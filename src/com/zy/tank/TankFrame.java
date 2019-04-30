@@ -6,6 +6,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 public class TankFrame extends Frame{
 	/**
@@ -13,13 +16,17 @@ public class TankFrame extends Frame{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	public static int frameSizeX = 600;
+	public static int frameSizeY = 800;
+	
 	private static int x = 200,y=200;
 	Tank tank = new Tank(x, y, Dir.DOWN, this);
+	List<Bullet> bullets = new LinkedList<Bullet>();
 	
     public TankFrame() {
     	setTitle("tank war");
     	setVisible(true);
-    	setSize(600, 800);
+    	setSize(frameSizeX, frameSizeY);
     	this.addKeyListener(new MyKeyListener());
     	this.addWindowListener(new WindowAdapter() {
 
@@ -34,6 +41,16 @@ public class TankFrame extends Frame{
 	@Override
 	public void paint(Graphics g) {
 		tank.paint(g);
+		Iterator<Bullet> bulletsIterator = bullets.iterator();
+		while(bulletsIterator.hasNext()) {
+			Bullet bullet = bulletsIterator.next();
+			if(!bullet.isAlive()) {
+				System.out.println(bullet.toString()+" is not living !");
+				bullets.remove(bullet);
+			}else {
+				bullet.paint(g);
+			}
+		}
 	}
 	
 	class MyKeyListener extends KeyAdapter{
@@ -80,7 +97,12 @@ public class TankFrame extends Frame{
 			case KeyEvent.VK_DOWN:
 				DOWN = false;
 				break;
+			case KeyEvent.VK_CONTROL:
+				System.out.println("control....");
+				tank.fire();
+				break;
 			}
+				
 			
 			setTankDir();
 		}

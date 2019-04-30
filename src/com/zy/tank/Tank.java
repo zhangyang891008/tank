@@ -93,5 +93,9 @@ public class Tank {
 			break;
 		}
 	}
+
+	public void fire() {
+		tf.bullets.add(new Bullet(x, y, dir, tf));
+	}
 	
 }
