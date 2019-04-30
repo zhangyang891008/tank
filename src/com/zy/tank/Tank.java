@@ -2,6 +2,7 @@ package com.zy.tank;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Set;
 
 
 public class Tank {
@@ -11,6 +12,7 @@ public class Tank {
 	private int x;
 	private int y;
 	private TankFrame tf;
+	private boolean alive = true;
 	
 	public static int getSPEED() {
 		return SPEED;
@@ -96,6 +98,14 @@ public class Tank {
 
 	public void fire() {
 		tf.bullets.add(new Bullet(x, y, dir, tf));
+	}
+
+	public boolean isAlive() {
+		return alive;
+	}
+	
+	public void setAlive(boolean alive) {
+		this.alive = alive;
 	}
 	
 }

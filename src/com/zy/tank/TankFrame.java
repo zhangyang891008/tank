@@ -23,6 +23,9 @@ public class TankFrame extends Frame{
 	Tank tank = new Tank(x, y, Dir.DOWN, this);
 	List<Bullet> bullets = new LinkedList<Bullet>();
 	
+	Tank tank2 = new Tank(500, 400, Dir.DOWN, this);
+	List<Tank> enemyTanks = new LinkedList<Tank>();
+	
     public TankFrame() {
     	setTitle("tank war");
     	setVisible(true);
@@ -36,11 +39,34 @@ public class TankFrame extends Frame{
 			}
     		
 		});
+    	
+    	initEnemyTanks();
 	}
+    
+    private void initEnemyTanks() {
+    	enemyTanks.add(new Tank(400, 500, Dir.UP, this));
+    	enemyTanks.add(new Tank(100, 300, Dir.DOWN,this));
+	}
+
+	public List<Tank> getTanks() {
+    	return enemyTanks;
+    }
 
 	@Override
 	public void paint(Graphics g) {
 		tank.paint(g);
+		
+		//ªÊ÷∆µ–»À
+		Iterator<Tank> tankIterator = enemyTanks.iterator();
+		while(tankIterator.hasNext()) {
+			Tank tank = tankIterator.next();
+			if(!tank.isAlive()) {
+				enemyTanks.remove(tank);
+			}else {
+				tank.paint(g);
+			}
+		}
+		
 		Iterator<Bullet> bulletsIterator = bullets.iterator();
 		while(bulletsIterator.hasNext()) {
 			Bullet bullet = bulletsIterator.next();
@@ -121,5 +147,4 @@ public class TankFrame extends Frame{
 		}
 		
 	}
-
 }
