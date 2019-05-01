@@ -26,6 +26,9 @@ public class TankFrame extends Frame{
 	Tank tank2 = new Tank(500, 400, Dir.DOWN, this);
 	List<Tank> enemyTanks = new LinkedList<Tank>();
 	
+	List<Explode> explodes = new LinkedList<Explode>();
+	
+	
     public TankFrame() {
     	setTitle("tank war");
     	setVisible(true);
@@ -55,27 +58,17 @@ public class TankFrame extends Frame{
 	@Override
 	public void paint(Graphics g) {
 		tank.paint(g);
-		
-		//ªÊ÷∆µ–»À
-		Iterator<Tank> tankIterator = enemyTanks.iterator();
-		while(tankIterator.hasNext()) {
-			Tank tank = tankIterator.next();
-			if(!tank.isAlive()) {
-				enemyTanks.remove(tank);
-			}else {
-				tank.paint(g);
-			}
+	
+		for(int i = 0;i<enemyTanks.size();i++){
+			enemyTanks.get(i).paint(g);
 		}
 		
-		Iterator<Bullet> bulletsIterator = bullets.iterator();
-		while(bulletsIterator.hasNext()) {
-			Bullet bullet = bulletsIterator.next();
-			if(!bullet.isAlive()) {
-				System.out.println(bullet.toString()+" is not living !");
-				bullets.remove(bullet);
-			}else {
-				bullet.paint(g);
-			}
+		for(int i = 0;i<bullets.size();i++) {
+			bullets.get(i).paint(g);
+		}
+		
+		for(int i = 0;i<explodes.size();i++) {
+			explodes.get(i).paint(g);
 		}
 	}
 	

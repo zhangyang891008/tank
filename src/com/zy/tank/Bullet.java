@@ -19,11 +19,27 @@ public class Bullet {
 	}
 	
 	public void paint(Graphics g) {
-		//判断坦克还在屏幕中的时候再进行绘制
-		if(isAlive()) {
-			g.fillOval(x, y, 20, 20);
-			move();
+		if(!isAlive()) {
+			tf.bullets.remove(this);
+			return;
 		}
+	 
+		//g.fillOval(x, y, 20, 20);
+		switch (dir) {
+		case LEFT:
+			g.drawImage(ResourceMgr.bulletL, x, y, null);
+			break;
+		case RIGHT:
+			g.drawImage(ResourceMgr.bulletR, x, y, null);
+			break;
+		case UP:
+			g.drawImage(ResourceMgr.bulletU, x, y, null);
+			break;
+		case DOWN:
+			g.drawImage(ResourceMgr.bulletD, x, y, null);
+		}
+		move();
+	
 	}
 
 	public boolean isAlive() {
@@ -50,7 +66,6 @@ public class Bullet {
 			break;
 		}
 		
-		//判断移动后位置是否已经不在屏幕内
 		if(x<0 || y<0 || x>tf.frameSizeX || y>tf.frameSizeY) {
 			System.out.println("position:("+x+","+y+")");
 			setAlive(false);
@@ -63,9 +78,9 @@ public class Bullet {
 			int tank_Y = tank.getY();
 			if(tank_X-x<10 && tank_Y-y<10) {
 				tank.setAlive(false);
-				//子弹打中了坦克，子弹也牺牲了
 				setAlive(false);
-				//TODO 爆炸效果待添加
+				//explode action
+				tf.explodes.add(new Explode(x, y, tf));
 			}
 		}
 	}

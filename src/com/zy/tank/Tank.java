@@ -1,14 +1,12 @@
 package com.zy.tank;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Set;
-
+import java.util.Random;
 
 public class Tank {
-	private static int SPEED = 10;
+	private static int SPEED = 2;
 	private Dir dir = Dir.DOWN;
-	private boolean moving;
+	private boolean moving = true;
 	private int x;
 	private int y;
 	private TankFrame tf;
@@ -70,11 +68,32 @@ public class Tank {
 	}
 	
 	public void paint(Graphics g){
-		Color color = g.getColor();
-		g.setColor(Color.BLUE);
-		g.fillRect(x, y, 50, 50);
-		g.setColor(color);
+		if(!isAlive()) {
+			tf.enemyTanks.remove(this);
+			return;
+		}
+		
+		switch(dir) {
+		case LEFT:
+			g.drawImage(ResourceMgr.tankL, x, y, null);
+			break;
+		case RIGHT:
+			g.drawImage(ResourceMgr.tankR, x, y, null);
+			break;
+		case UP:
+			g.drawImage(ResourceMgr.tankU, x, y, null);
+			break;
+		case DOWN:
+			g.drawImage(ResourceMgr.tankD, x, y, null);
+			//g.fillRect(x, y, 50, 50);
+			break;
+		}
 		move();
+		
+		//添加随机fire
+		if(new Random().nextInt(10)>8) {
+			this.fire();
+		}
 	}
 
 	private void move() {
@@ -97,7 +116,9 @@ public class Tank {
 	}
 
 	public void fire() {
-		tf.bullets.add(new Bullet(x, y, dir, tf));
+		int bx = x+ResourceMgr.tankD.getWidth()/2 -ResourceMgr.bulletD.getWidth()/2;
+		int by = y+ResourceMgr.tankD.getHeight()/2 - ResourceMgr.bulletD.getHeight()/2;
+		tf.bullets.add(new Bullet(bx, by, dir, tf));
 	}
 
 	public boolean isAlive() {
