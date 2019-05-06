@@ -13,6 +13,8 @@ public class Tank {
 	private boolean alive = true;
 	private Group g;
 	
+	Random random = new Random();
+	
 	public static int getSPEED() {
 		return SPEED;
 	}
@@ -93,9 +95,17 @@ public class Tank {
 		move();
 		
 		//添加随机fire
-		if(new Random().nextInt(10)>8) {
+		if(this.g == Group.Bad && random.nextInt(10)>8) {
 			this.fire();
 		}
+		
+		if(this.g == Group.Bad && random.nextInt(100)>95) {
+			this.changeDir();
+		}
+	}
+
+	private void changeDir() {
+		dir = Dir.values()[random.nextInt(4)];
 	}
 
 	private void move() {

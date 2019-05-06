@@ -1,5 +1,6 @@
 package com.zy.tank;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
@@ -31,6 +32,7 @@ public class TankFrame extends Frame{
     	setTitle("tank war");
     	setVisible(true);
     	setSize(frameSizeX, frameSizeY);
+    	setBackground(Color.BLACK);
     	this.addKeyListener(new MyKeyListener());
     	this.addWindowListener(new WindowAdapter() {
 
