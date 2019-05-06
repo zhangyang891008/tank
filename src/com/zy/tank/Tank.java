@@ -11,6 +11,7 @@ public class Tank {
 	private int y;
 	private TankFrame tf;
 	private boolean alive = true;
+	private Group g;
 	
 	public static int getSPEED() {
 		return SPEED;
@@ -60,10 +61,11 @@ public class Tank {
 		this.tf = tf;
 	}
 
-	public Tank(int x, int y, Dir dir, TankFrame tf) {
+	public Tank(int x, int y, Dir dir,Group g, TankFrame tf) {
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
+		this.g = g;
 		this.tf = tf;
 	}
 	
@@ -99,6 +101,8 @@ public class Tank {
 	private void move() {
 		if(!moving)
 			return;
+		int initx = x;
+		int inity = y;
 		switch(dir) {
 		case LEFT:
 			x -= SPEED;
@@ -113,12 +117,16 @@ public class Tank {
 			y += SPEED;
 			break;
 		}
+		if(x<0||y<0|x>(tf.frameSizeX-ResourceMgr.tankD.getWidth())|y>(tf.frameSizeY-ResourceMgr.tankD.getHeight())) {
+			x = initx;
+			y = inity;
+		}
 	}
 
 	public void fire() {
 		int bx = x+ResourceMgr.tankD.getWidth()/2 -ResourceMgr.bulletD.getWidth()/2;
 		int by = y+ResourceMgr.tankD.getHeight()/2 - ResourceMgr.bulletD.getHeight()/2;
-		tf.bullets.add(new Bullet(bx, by, dir, tf));
+		tf.bullets.add(new Bullet(bx, by, dir,g,tf));
 	}
 
 	public boolean isAlive() {
@@ -127,6 +135,14 @@ public class Tank {
 	
 	public void setAlive(boolean alive) {
 		this.alive = alive;
+	}
+
+	public Group getG() {
+		return g;
+	}
+
+	public void setG(Group g) {
+		this.g = g;
 	}
 	
 }

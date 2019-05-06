@@ -6,7 +6,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,10 +19,9 @@ public class TankFrame extends Frame{
 	public static int frameSizeY = 800;
 	
 	private static int x = 200,y=200;
-	Tank tank = new Tank(x, y, Dir.DOWN, this);
+	Tank tank = new Tank(0, 0, Dir.DOWN, Group.Good,this);
 	List<Bullet> bullets = new LinkedList<Bullet>();
 	
-	Tank tank2 = new Tank(500, 400, Dir.DOWN, this);
 	List<Tank> enemyTanks = new LinkedList<Tank>();
 	
 	List<Explode> explodes = new LinkedList<Explode>();
@@ -42,15 +40,8 @@ public class TankFrame extends Frame{
 			}
     		
 		});
-    	
-    	initEnemyTanks();
 	}
-    
-    private void initEnemyTanks() {
-    	enemyTanks.add(new Tank(400, 500, Dir.UP, this));
-    	enemyTanks.add(new Tank(100, 300, Dir.DOWN,this));
-	}
-
+ 
 	public List<Tank> getTanks() {
     	return enemyTanks;
     }

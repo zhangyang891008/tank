@@ -11,10 +11,12 @@ public class Bullet {
 	TankFrame tf;
 	private static int SPEED=15;
 	private boolean alive = true;
-	public Bullet(int x, int y, Dir down, TankFrame tankFrame) {
+	private Group g;
+	public Bullet(int x, int y, Dir down, Group g,TankFrame tankFrame) {
 		this.x = x;
 		this.y = y;
 		this.dir = down;
+		this.g = g;
 		this.tf = tankFrame;
 	}
 	
@@ -67,20 +69,23 @@ public class Bullet {
 		}
 		
 		if(x<0 || y<0 || x>tf.frameSizeX || y>tf.frameSizeY) {
-			System.out.println("position:("+x+","+y+")");
+			//System.out.println("position:("+x+","+y+")");
 			setAlive(false);
  
 		}
 		
 		List<Tank> tanks = tf.getTanks();
 		for(Tank tank:tanks) {
-			int tank_X = tank.getX();
-			int tank_Y = tank.getY();
-			if(tank_X-x<10 && tank_Y-y<10) {
-				tank.setAlive(false);
-				setAlive(false);
-				//explode action
-				tf.explodes.add(new Explode(x, y, tf));
+			if(tank.getG()!=this.g) {
+				int tank_X = tank.getX();
+				int tank_Y = tank.getY();
+				if(tank_X-x<-5 && tank_Y-y<-5) {
+					tf.explodes.add(new Explode(tank.getX(), tank.getY(), tf));
+					tank.setAlive(false);
+					this.setAlive(false);
+					//explode action
+					System.out.println("explode :"+tank.getG()+","+this.g);
+				}
 			}
 		}
 	}
