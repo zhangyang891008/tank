@@ -7,6 +7,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,16 +17,16 @@ public class TankFrame extends Frame{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public static int frameSizeX = 600;
-	public static int frameSizeY = 800;
+	public static int frameSizeX = 800;
+	public static int frameSizeY = 600;
 	
 	private static int x = 200,y=200;
 	Tank tank = new Tank(0, 0, Dir.DOWN, Group.Good,this);
-	List<Bullet> bullets = new LinkedList<Bullet>();
+	List<Bullet> bullets = new ArrayList<Bullet>();
 	
-	List<Tank> enemyTanks = new LinkedList<Tank>();
+	List<Tank> enemyTanks = new ArrayList<Tank>();
 	
-	List<Explode> explodes = new LinkedList<Explode>();
+	List<Explode> explodes = new ArrayList<Explode>();
 	
 	
     public TankFrame() {
@@ -63,6 +64,12 @@ public class TankFrame extends Frame{
 		for(int i = 0;i<explodes.size();i++) {
 			explodes.get(i).paint(g);
 		}
+			
+		for(int i = 0;i<bullets.size();i++) {
+			for(int j = 0;j<enemyTanks.size();j++) {
+				bullets.get(i).collide(enemyTanks.get(j));
+			}
+		}
 	}
 	
 	class MyKeyListener extends KeyAdapter{
@@ -77,7 +84,6 @@ public class TankFrame extends Frame{
 			switch(keyCode) {
 			case KeyEvent.VK_RIGHT:
 				RIGHT = true;
-				System.out.println("right");
 				break;
 			case KeyEvent.VK_LEFT:
 				LEFT = true;
@@ -128,8 +134,6 @@ public class TankFrame extends Frame{
 				if(UP) tank.setDir(Dir.UP);
 				if(DOWN) tank.setDir(Dir.DOWN);
 			}
-		
-			
 		}
 		
 	}

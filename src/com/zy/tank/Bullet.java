@@ -1,11 +1,11 @@
 package com.zy.tank;
 
 import java.awt.Graphics;
-import java.util.List;
-
 
 public class Bullet {
 
+	public static final int HEIGHT = ResourceMgr.bulletD.getHeight();
+	public static final int WIDTH = ResourceMgr.bulletD.getWidth();
 	private int x,y;
 	private Dir dir;
 	TankFrame tf;
@@ -74,19 +74,16 @@ public class Bullet {
  
 		}
 		
-		List<Tank> tanks = tf.getTanks();
-		for(Tank tank:tanks) {
-			if(tank.getG()!=this.g) {
-				int tank_X = tank.getX();
-				int tank_Y = tank.getY();
-				if(tank_X-x<-5 && tank_Y-y<-5) {
-					tf.explodes.add(new Explode(tank.getX(), tank.getY(), tf));
-					tank.setAlive(false);
-					this.setAlive(false);
-					//explode action
-					System.out.println("explode :"+tank.getG()+","+this.g);
-				}
-			}
+	}
+	
+	public void collide(Tank tank) {
+		if(this.g ==tank.getG()) {
+			return;
+		}
+		if(this.x>tank.getX() && this.x<tank.getX()+Tank.WIDTH && y>tank.getY() && y<tank.getY()+Tank.HEIGHT) {
+			tf.enemyTanks.remove(tank);
+			tf.bullets.remove(this);
+			tf.explodes.add(new Explode(tank.getX(), tank.getY(), tf));
 		}
 	}
 

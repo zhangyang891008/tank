@@ -13,6 +13,9 @@ public class Tank {
 	private boolean alive = true;
 	private Group g;
 	
+	public static int WIDTH = ResourceMgr.tankD.getWidth();
+	public static int HEIGHT = ResourceMgr.tankD.getHeight();
+	
 	Random random = new Random();
 	
 	public static int getSPEED() {
@@ -111,8 +114,6 @@ public class Tank {
 	private void move() {
 		if(!moving)
 			return;
-		int initx = x;
-		int inity = y;
 		switch(dir) {
 		case LEFT:
 			x -= SPEED;
@@ -127,15 +128,29 @@ public class Tank {
 			y += SPEED;
 			break;
 		}
-		if(x<0||y<0|x>(tf.frameSizeX-ResourceMgr.tankD.getWidth())|y>(tf.frameSizeY-ResourceMgr.tankD.getHeight())) {
-			x = initx;
-			y = inity;
+		
+		boundCheck();
+		
+	}
+
+	private void boundCheck() {
+		if(x<0) {
+			x=0;
+		}
+		if(y<0) {
+			y=0;
+		}
+		if(x>tf.frameSizeX-Tank.WIDTH) {
+			x = tf.frameSizeX - Tank.WIDTH;
+		}
+		if(y>tf.frameSizeY - Tank.HEIGHT) {
+			y = tf.frameSizeY - Tank.HEIGHT;
 		}
 	}
 
 	public void fire() {
-		int bx = x+ResourceMgr.tankD.getWidth()/2 -ResourceMgr.bulletD.getWidth()/2;
-		int by = y+ResourceMgr.tankD.getHeight()/2 - ResourceMgr.bulletD.getHeight()/2;
+		int bx = x + Tank.WIDTH/2 - Bullet.WIDTH/2;
+		int by = y + Tank.HEIGHT/2 - Bullet.HEIGHT/2;
 		tf.bullets.add(new Bullet(bx, by, dir,g,tf));
 	}
 
