@@ -11,7 +11,7 @@ public class Tank {
 	private int y;
 	private TankFrame tf;
 	private boolean alive = true;
-	private Group g;
+	private Group group;
 	
 	public static int WIDTH = ResourceMgr.tankD.getWidth();
 	public static int HEIGHT = ResourceMgr.tankD.getHeight();
@@ -70,7 +70,7 @@ public class Tank {
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
-		this.g = g;
+		this.group = g;
 		this.tf = tf;
 	}
 	
@@ -98,11 +98,11 @@ public class Tank {
 		move();
 		
 		//添加随机fire
-		if(this.g == Group.Bad && random.nextInt(10)>8) {
+		if(this.group == Group.Bad && random.nextInt(10)>8) {
 			this.fire();
 		}
 		
-		if(this.g == Group.Bad && random.nextInt(100)>95) {
+		if(this.group == Group.Bad && random.nextInt(100)>95) {
 			this.changeDir();
 		}
 	}
@@ -151,7 +151,7 @@ public class Tank {
 	public void fire() {
 		int bx = x + Tank.WIDTH/2 - Bullet.WIDTH/2;
 		int by = y + Tank.HEIGHT/2 - Bullet.HEIGHT/2;
-		tf.bullets.add(new Bullet(bx, by, dir,g,tf));
+		tf.bullets.add(new Bullet(bx, by, dir,group,tf));
 	}
 
 	public boolean isAlive() {
@@ -162,12 +162,12 @@ public class Tank {
 		this.alive = alive;
 	}
 
-	public Group getG() {
-		return g;
+	public Group getGroup() {
+		return group;
 	}
 
-	public void setG(Group g) {
-		this.g = g;
+	public void setGroup(Group group) {
+		this.group = group;
 	}
-	
+ 
 }

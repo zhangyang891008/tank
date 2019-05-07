@@ -11,12 +11,12 @@ public class Bullet {
 	TankFrame tf;
 	private static int SPEED=15;
 	private boolean alive = true;
-	private Group g;
-	public Bullet(int x, int y, Dir down, Group g,TankFrame tankFrame) {
+	private Group group;
+	public Bullet(int x, int y, Dir down, Group group,TankFrame tankFrame) {
 		this.x = x;
 		this.y = y;
 		this.dir = down;
-		this.g = g;
+		this.group = group;
 		this.tf = tankFrame;
 	}
 	
@@ -71,13 +71,12 @@ public class Bullet {
 		if(x<0 || y<0 || x>tf.frameSizeX || y>tf.frameSizeY) {
 			//System.out.println("position:("+x+","+y+")");
 			setAlive(false);
- 
 		}
 		
 	}
 	
 	public void collide(Tank tank) {
-		if(this.g ==tank.getG()) {
+		if(this.group ==tank.getGroup()) {
 			return;
 		}
 		if(this.x>tank.getX() && this.x<tank.getX()+Tank.WIDTH && y>tank.getY() && y<tank.getY()+Tank.HEIGHT) {
