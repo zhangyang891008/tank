@@ -5,6 +5,8 @@ import com.zy.tank.entity.Bullet;
 import com.zy.tank.entity.Dir;
 import com.zy.tank.entity.Explode;
 import com.zy.tank.entity.Group;
+import com.zy.tank.entity.StandardBullet;
+import com.zy.tank.entity.StandardExplode;
 import com.zy.tank.entity.StandardTank;
 import com.zy.tank.entity.Tank;
 
@@ -18,13 +20,13 @@ public class StandardWarFactory extends WarFactory{
 
 	@Override
 	public Bullet creatBullet(int x, int y, Dir down, Group group,TankFrame tankFrame) {
-		Bullet bullet = new Bullet(x, y, down, group, tankFrame);
+		Bullet bullet = new StandardBullet(x, y, down, group, tankFrame);
 		return bullet;
 	}
 
 	@Override
 	public Explode createExplode(int x, int y, TankFrame tf) {
-		Explode explode = new Explode(x, y, tf);
+		Explode explode = new StandardExplode(x, y, tf);
 		return explode;
 	}
 

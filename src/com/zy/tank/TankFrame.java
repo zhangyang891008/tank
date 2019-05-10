@@ -27,8 +27,7 @@ public class TankFrame extends Frame{
 	
 	public static int frameSizeX = 800;
 	public static int frameSizeY = 600;
-	
-	WarFactory factory = new BeautifulWarFactory();
+	public static WarFactory factory;
 	Tank tank = factory.createTank(200, 200, Dir.DOWN, Group.Good, this);
 	//Tank tank = new Tank(0, 0, Dir.DOWN, Group.Good,this);
 	public List<Bullet> bullets = new ArrayList<Bullet>();
@@ -36,7 +35,18 @@ public class TankFrame extends Frame{
 	public List<Tank> enemyTanks = new ArrayList<Tank>();
 	
 	public List<Explode> explodes = new ArrayList<Explode>();
-	
+	static {
+		String factoryClazz = PropertyMgr.get("factorymode");
+		try {
+			factory = (WarFactory) Class.forName(factoryClazz).newInstance();
+		} catch (InstantiationException e1) {
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			e1.printStackTrace();
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+	}
 	
     public TankFrame() {
     	 

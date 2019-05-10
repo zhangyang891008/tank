@@ -1,6 +1,8 @@
 package com.zy.tank.factory;
 
 import com.zy.tank.TankFrame;
+import com.zy.tank.entity.BeautifulBullet;
+import com.zy.tank.entity.BeautifulExplode;
 import com.zy.tank.entity.BeautifulTank;
 import com.zy.tank.entity.Bullet;
 import com.zy.tank.entity.Dir;
@@ -18,13 +20,13 @@ public class BeautifulWarFactory extends WarFactory{
 
 	@Override
 	public Bullet creatBullet(int x, int y, Dir down, Group group,TankFrame tankFrame) {
-		Bullet bullet = new Bullet(x, y, down, group, tankFrame);
+		Bullet bullet = new BeautifulBullet(x, y, down, group, tankFrame);
 		return bullet;
 	}
 
 	@Override
 	public Explode createExplode(int x, int y, TankFrame tf) {
-		Explode explode = new Explode(x, y, tf);
+		Explode explode = new BeautifulExplode(x, y, tf);
 		return explode;
 	}
 

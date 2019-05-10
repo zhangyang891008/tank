@@ -7,6 +7,10 @@ import com.zy.tank.TankFrame;
 
 public class StandardTank extends Tank{
 
+	static {
+		width = ResourceMgr.standardTankD.getWidth();
+		height = ResourceMgr.standardTankD.getHeight();
+	}
 	@Override
 	public void paint(Graphics g) {
 		if(!isAlive()) {

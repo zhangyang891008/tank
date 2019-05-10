@@ -6,7 +6,11 @@ import com.zy.tank.ResourceMgr;
 import com.zy.tank.TankFrame;
 
 public class BeautifulTank extends Tank{
-
+	static {
+		width = ResourceMgr.goodTankD.getWidth();
+		height = ResourceMgr.goodTankD.getHeight();
+	}
+	
 	@Override
 	public void paint(Graphics g) {
 		if(!isAlive()) {

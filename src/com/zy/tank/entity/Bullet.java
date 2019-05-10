@@ -5,16 +5,16 @@ import java.awt.Graphics;
 import com.zy.tank.ResourceMgr;
 import com.zy.tank.TankFrame;
 
-public class Bullet{
+public abstract class Bullet{
 
 	public static int height = ResourceMgr.bulletD.getHeight();
 	public static int width = ResourceMgr.bulletD.getWidth();
-	private int x,y;
-	private Dir dir;
+	int x,y;
+	Dir dir;
 	TankFrame tf;
-	private static int SPEED=15;
-	private boolean alive = true;
-	private Group group;
+	static int SPEED=15;
+	boolean alive = true;
+	Group group;
  
 	public Bullet(int x, int y, Dir down, Group group,TankFrame tankFrame) {
 		this.x = x;
@@ -25,29 +25,7 @@ public class Bullet{
 		tf.bullets.add(this);
 	}
 	
-	public void paint(Graphics g) {
-		if(!isAlive()) {
-			tf.bullets.remove(this);
-			return;
-		}
-	 
-		//g.fillOval(x, y, 20, 20);
-		switch (dir) {
-		case LEFT:
-			g.drawImage(ResourceMgr.bulletL, x, y, null);
-			break;
-		case RIGHT:
-			g.drawImage(ResourceMgr.bulletR, x, y, null);
-			break;
-		case UP:
-			g.drawImage(ResourceMgr.bulletU, x, y, null);
-			break;
-		case DOWN:
-			g.drawImage(ResourceMgr.bulletD, x, y, null);
-		}
-		move();
-	
-	}
+	public abstract void paint(Graphics g);
 
 	public boolean isAlive() {
 		return alive;
@@ -57,29 +35,6 @@ public class Bullet{
 		this.alive = alive;
 	}
 
-	private void move() {	
-		switch(dir) {
-		case LEFT:
-			x-= SPEED;
-			break;
-		case RIGHT:
-			x+=SPEED;
-			break;
-		case UP:
-			y-=SPEED;
-			break;
-		case DOWN:
-			y+=SPEED;
-			break;
-		}
-		
-		if(x<0 || y<0 || x>tf.frameSizeX || y>tf.frameSizeY) {
-			//System.out.println("position:("+x+","+y+")");
-			setAlive(false);
-		}
-		
-	}
-	
 	public void collide(Tank tank) {
 		if(this.group ==tank.getGroup()) {
 			return;
@@ -87,7 +42,7 @@ public class Bullet{
 		if(this.x>tank.getX() && this.x<tank.getX()+tank.width && y>tank.getY() && y<tank.getY()+tank.height) {
 			tf.enemyTanks.remove(tank);
 			tf.bullets.remove(this);
-			tf.explodes.add(new Explode(tank.getX(), tank.getY(), tf));
+			tf.explodes.add(tf.factory.createExplode(tank.getX(), tank.getY(), tf));
 		}
 	}
 
