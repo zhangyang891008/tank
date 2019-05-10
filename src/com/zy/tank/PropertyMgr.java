@@ -9,7 +9,6 @@ public class PropertyMgr {
 		try {
 			props.load(PropertyMgr.class.getClassLoader().getResourceAsStream("config"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

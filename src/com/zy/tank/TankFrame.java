@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import com.zy.tank.entity.Bullet;
@@ -16,7 +15,6 @@ import com.zy.tank.entity.Dir;
 import com.zy.tank.entity.Explode;
 import com.zy.tank.entity.Group;
 import com.zy.tank.entity.Tank;
-import com.zy.tank.factory.BeautifulWarFactory;
 import com.zy.tank.factory.WarFactory;
 
 public class TankFrame extends Frame{
@@ -71,6 +69,11 @@ public class TankFrame extends Frame{
 
 	@Override
 	public void paint(Graphics g) {
+		Color color = g.getColor();
+		g.setColor(Color.WHITE);
+		g.drawString("坦克数量："+enemyTanks.size(), 10, 60);
+		g.drawString("子弹数量："+bullets.size(), 10, 80);
+		g.setColor(color);
 		tank.paint(g);
 	
 		for(int i = 0;i<enemyTanks.size();i++){

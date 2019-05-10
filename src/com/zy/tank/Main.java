@@ -2,9 +2,6 @@ package com.zy.tank;
 
 import com.zy.tank.entity.Dir;
 import com.zy.tank.entity.Group;
-import com.zy.tank.entity.Tank;
-import com.zy.tank.factory.BeautifulWarFactory;
-import com.zy.tank.factory.StandardWarFactory;
 import com.zy.tank.factory.WarFactory;
 
 public class Main {

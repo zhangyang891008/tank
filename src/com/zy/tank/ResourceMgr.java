@@ -22,14 +22,14 @@ public class ResourceMgr {
 			badTankD = ImageUtil.rotateImage(badTankU, 180);
 			
 			goodTankU = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/GoodTank1.png"));
-			goodTankL = ImageUtil.rotateImage(badTankU, -90);
-			goodTankR = ImageUtil.rotateImage(badTankU, 90);
-			goodTankD = ImageUtil.rotateImage(badTankU, 180);
+			goodTankL = ImageUtil.rotateImage(goodTankU, -90);
+			goodTankR = ImageUtil.rotateImage(goodTankU, 90);
+			goodTankD = ImageUtil.rotateImage(goodTankU, 180);
 			
-			standardTankR = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankR.gif"));
-			standardTankL = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankL.gif"));
 			standardTankU = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankU.gif"));
 			standardTankD = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankD.gif"));
+			standardTankR = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankR.gif"));
+			standardTankL = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankL.gif"));
 			
 			bulletR = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/bulletR.gif"));
 			bulletL = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/bulletL.gif"));
