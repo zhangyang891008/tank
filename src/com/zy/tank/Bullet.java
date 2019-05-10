@@ -18,6 +18,8 @@ public class Bullet {
 		this.dir = down;
 		this.group = group;
 		this.tf = tankFrame;
+		
+		tf.bullets.add(this);
 	}
 	
 	public void paint(Graphics g) {

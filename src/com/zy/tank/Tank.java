@@ -3,6 +3,8 @@ package com.zy.tank;
 import java.awt.Graphics;
 import java.util.Random;
 
+import com.sun.corba.se.spi.orbutil.fsm.FSM;
+
 public class Tank {
 	private static int SPEED = 2;
 	private Dir dir = Dir.DOWN;
@@ -12,6 +14,7 @@ public class Tank {
 	private TankFrame tf;
 	private boolean alive = true;
 	private Group group;
+	FireStrategy fs ;
 	
 	public static int WIDTH = ResourceMgr.tankD.getWidth();
 	public static int HEIGHT = ResourceMgr.tankD.getHeight();
@@ -72,6 +75,11 @@ public class Tank {
 		this.dir = dir;
 		this.group = g;
 		this.tf = tf;
+		if(group==Group.Good) {
+			fs = new FourDirFireStrategy();
+		}else {
+			fs = new DefaultFireStrategy();
+		}
 	}
 	
 	public void paint(Graphics g){
@@ -149,9 +157,7 @@ public class Tank {
 	}
 
 	public void fire() {
-		int bx = x + Tank.WIDTH/2 - Bullet.WIDTH/2;
-		int by = y + Tank.HEIGHT/2 - Bullet.HEIGHT/2;
-		tf.bullets.add(new Bullet(bx, by, dir,group,tf));
+		fs.fire(this);
 	}
 
 	public boolean isAlive() {
