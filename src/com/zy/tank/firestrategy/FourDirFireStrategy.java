@@ -1,4 +1,8 @@
-package com.zy.tank;
+package com.zy.tank.firestrategy;
+
+import com.zy.tank.entity.Bullet;
+import com.zy.tank.entity.Dir;
+import com.zy.tank.entity.Tank;
 
 public class FourDirFireStrategy implements FireStrategy{
 

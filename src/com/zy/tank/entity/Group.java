@@ -1,4 +1,4 @@
-package com.zy.tank;
+package com.zy.tank.entity;
 
 public enum Group {
 	Good,Bad

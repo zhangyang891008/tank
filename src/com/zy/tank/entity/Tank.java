@@ -1,12 +1,17 @@
-package com.zy.tank;
+package com.zy.tank.entity;
 
 import java.awt.Graphics;
 import java.util.Random;
 
 import com.sun.corba.se.spi.orbutil.fsm.FSM;
+import com.zy.tank.ResourceMgr;
+import com.zy.tank.TankFrame;
+import com.zy.tank.firestrategy.DefaultFireStrategy;
+import com.zy.tank.firestrategy.FireStrategy;
+import com.zy.tank.firestrategy.FourDirFireStrategy;
 
-public class Tank {
-	private static int SPEED = 2;
+public class Tank{
+	private static int SPEED = 4;
 	private Dir dir = Dir.DOWN;
 	private boolean moving = true;
 	private int x;

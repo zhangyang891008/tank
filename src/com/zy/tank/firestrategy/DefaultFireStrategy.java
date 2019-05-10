@@ -1,4 +1,7 @@
-package com.zy.tank;
+package com.zy.tank.firestrategy;
+
+import com.zy.tank.entity.Bullet;
+import com.zy.tank.entity.Tank;
 
 public class DefaultFireStrategy implements FireStrategy{
 

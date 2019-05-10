@@ -11,6 +11,14 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.zy.tank.entity.Bullet;
+import com.zy.tank.entity.Dir;
+import com.zy.tank.entity.Explode;
+import com.zy.tank.entity.Group;
+import com.zy.tank.entity.Tank;
+import com.zy.tank.factory.DefaultWarFactory;
+import com.zy.tank.factory.WarFactory;
+
 public class TankFrame extends Frame{
 	/**
 	 * 
@@ -21,15 +29,19 @@ public class TankFrame extends Frame{
 	public static int frameSizeY = 600;
 	
 	private static int x = 200,y=200;
+	
+	WarFactory factory = new DefaultWarFactory();
+ 
 	Tank tank = new Tank(0, 0, Dir.DOWN, Group.Good,this);
-	List<Bullet> bullets = new ArrayList<Bullet>();
+	public List<Bullet> bullets = new ArrayList<Bullet>();
 	
-	List<Tank> enemyTanks = new ArrayList<Tank>();
+	public List<Tank> enemyTanks = new ArrayList<Tank>();
 	
-	List<Explode> explodes = new ArrayList<Explode>();
+	public List<Explode> explodes = new ArrayList<Explode>();
 	
 	
     public TankFrame() {
+    	 
     	setTitle("tank war");
     	setVisible(true);
     	setSize(frameSizeX, frameSizeY);

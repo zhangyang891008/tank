@@ -1,8 +1,11 @@
-package com.zy.tank;
+package com.zy.tank.entity;
 
 import java.awt.Graphics;
 
-public class Explode {
+import com.zy.tank.ResourceMgr;
+import com.zy.tank.TankFrame;
+
+public class Explode{
 	private int x,y;
 	TankFrame tf;
 	int step = 0;

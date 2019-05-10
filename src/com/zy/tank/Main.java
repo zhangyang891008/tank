@@ -1,5 +1,9 @@
 package com.zy.tank;
 
+import com.zy.tank.entity.Dir;
+import com.zy.tank.entity.Group;
+import com.zy.tank.entity.Tank;
+
 public class Main {
 	public static int tankCount = 10;
 	public static void main(String[] args) {

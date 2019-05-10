@@ -1,8 +1,11 @@
-package com.zy.tank;
+package com.zy.tank.entity;
 
 import java.awt.Graphics;
 
-public class Bullet {
+import com.zy.tank.ResourceMgr;
+import com.zy.tank.TankFrame;
+
+public class Bullet{
 
 	public static final int HEIGHT = ResourceMgr.bulletD.getHeight();
 	public static final int WIDTH = ResourceMgr.bulletD.getWidth();
