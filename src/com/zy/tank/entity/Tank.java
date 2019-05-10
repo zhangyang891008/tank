@@ -3,29 +3,27 @@ package com.zy.tank.entity;
 import java.awt.Graphics;
 import java.util.Random;
 
-import com.sun.corba.se.spi.orbutil.fsm.FSM;
 import com.zy.tank.ResourceMgr;
 import com.zy.tank.TankFrame;
 import com.zy.tank.firestrategy.DefaultFireStrategy;
 import com.zy.tank.firestrategy.FireStrategy;
 import com.zy.tank.firestrategy.FourDirFireStrategy;
 
-public class Tank{
-	private static int SPEED = 4;
-	private Dir dir = Dir.DOWN;
-	private boolean moving = true;
-	private int x;
-	private int y;
-	private TankFrame tf;
-	private boolean alive = true;
-	private Group group;
+public abstract class Tank{
+	public static int SPEED = 4;
+	public Dir dir = Dir.DOWN;
+	public boolean moving = true;
+	public int x;
+	public int y;
+	public TankFrame tf;
+	public boolean alive = true;
+	public Group group;
 	FireStrategy fs ;
-	
-	public static int WIDTH = ResourceMgr.tankD.getWidth();
-	public static int HEIGHT = ResourceMgr.tankD.getHeight();
-	
+	public static int width = ResourceMgr.goodTankD.getWidth();
+	public static int height = ResourceMgr.goodTankD.getHeight();
+		
 	Random random = new Random();
-	
+
 	public static int getSPEED() {
 		return SPEED;
 	}
@@ -80,6 +78,7 @@ public class Tank{
 		this.dir = dir;
 		this.group = g;
 		this.tf = tf;
+  
 		if(group==Group.Good) {
 			fs = new FourDirFireStrategy();
 		}else {
@@ -87,84 +86,10 @@ public class Tank{
 		}
 	}
 	
-	public void paint(Graphics g){
-		if(!isAlive()) {
-			tf.enemyTanks.remove(this);
-			return;
-		}
-		
-		switch(dir) {
-		case LEFT:
-			g.drawImage(ResourceMgr.tankL, x, y, null);
-			break;
-		case RIGHT:
-			g.drawImage(ResourceMgr.tankR, x, y, null);
-			break;
-		case UP:
-			g.drawImage(ResourceMgr.tankU, x, y, null);
-			break;
-		case DOWN:
-			g.drawImage(ResourceMgr.tankD, x, y, null);
-			//g.fillRect(x, y, 50, 50);
-			break;
-		}
-		move();
-		
-		//添加随机fire
-		if(this.group == Group.Bad && random.nextInt(10)>8) {
-			this.fire();
-		}
-		
-		if(this.group == Group.Bad && random.nextInt(100)>95) {
-			this.changeDir();
-		}
-	}
-
-	private void changeDir() {
-		dir = Dir.values()[random.nextInt(4)];
-	}
-
-	private void move() {
-		if(!moving)
-			return;
-		switch(dir) {
-		case LEFT:
-			x -= SPEED;
-			break;
-		case RIGHT:
-			x += SPEED;
-			break;
-		case UP:
-			y -= SPEED;
-			break;
-		case DOWN:
-			y += SPEED;
-			break;
-		}
-		
-		boundCheck();
-		
-	}
-
-	private void boundCheck() {
-		if(x<0) {
-			x=0;
-		}
-		if(y<0) {
-			y=0;
-		}
-		if(x>tf.frameSizeX-Tank.WIDTH) {
-			x = tf.frameSizeX - Tank.WIDTH;
-		}
-		if(y>tf.frameSizeY - Tank.HEIGHT) {
-			y = tf.frameSizeY - Tank.HEIGHT;
-		}
-	}
-
-	public void fire() {
-		fs.fire(this);
-	}
-
+	public abstract void paint(Graphics g);
+	 
+	public abstract void fire();
+	
 	public boolean isAlive() {
 		return alive;
 	}

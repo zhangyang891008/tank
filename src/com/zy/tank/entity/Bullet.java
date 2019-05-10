@@ -7,21 +7,21 @@ import com.zy.tank.TankFrame;
 
 public class Bullet{
 
-	public static final int HEIGHT = ResourceMgr.bulletD.getHeight();
-	public static final int WIDTH = ResourceMgr.bulletD.getWidth();
+	public static int height = ResourceMgr.bulletD.getHeight();
+	public static int width = ResourceMgr.bulletD.getWidth();
 	private int x,y;
 	private Dir dir;
 	TankFrame tf;
 	private static int SPEED=15;
 	private boolean alive = true;
 	private Group group;
+ 
 	public Bullet(int x, int y, Dir down, Group group,TankFrame tankFrame) {
 		this.x = x;
 		this.y = y;
 		this.dir = down;
 		this.group = group;
 		this.tf = tankFrame;
-		
 		tf.bullets.add(this);
 	}
 	
@@ -84,7 +84,7 @@ public class Bullet{
 		if(this.group ==tank.getGroup()) {
 			return;
 		}
-		if(this.x>tank.getX() && this.x<tank.getX()+Tank.WIDTH && y>tank.getY() && y<tank.getY()+Tank.HEIGHT) {
+		if(this.x>tank.getX() && this.x<tank.getX()+tank.width && y>tank.getY() && y<tank.getY()+tank.height) {
 			tf.enemyTanks.remove(tank);
 			tf.bullets.remove(this);
 			tf.explodes.add(new Explode(tank.getX(), tank.getY(), tf));

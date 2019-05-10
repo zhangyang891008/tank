@@ -16,7 +16,7 @@ import com.zy.tank.entity.Dir;
 import com.zy.tank.entity.Explode;
 import com.zy.tank.entity.Group;
 import com.zy.tank.entity.Tank;
-import com.zy.tank.factory.DefaultWarFactory;
+import com.zy.tank.factory.BeautifulWarFactory;
 import com.zy.tank.factory.WarFactory;
 
 public class TankFrame extends Frame{
@@ -28,11 +28,9 @@ public class TankFrame extends Frame{
 	public static int frameSizeX = 800;
 	public static int frameSizeY = 600;
 	
-	private static int x = 200,y=200;
-	
-	WarFactory factory = new DefaultWarFactory();
- 
-	Tank tank = new Tank(0, 0, Dir.DOWN, Group.Good,this);
+	WarFactory factory = new BeautifulWarFactory();
+	Tank tank = factory.createTank(200, 200, Dir.DOWN, Group.Good, this);
+	//Tank tank = new Tank(0, 0, Dir.DOWN, Group.Good,this);
 	public List<Bullet> bullets = new ArrayList<Bullet>();
 	
 	public List<Tank> enemyTanks = new ArrayList<Tank>();

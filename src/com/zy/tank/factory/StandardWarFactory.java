@@ -5,13 +5,14 @@ import com.zy.tank.entity.Bullet;
 import com.zy.tank.entity.Dir;
 import com.zy.tank.entity.Explode;
 import com.zy.tank.entity.Group;
+import com.zy.tank.entity.StandardTank;
 import com.zy.tank.entity.Tank;
 
-public class DefaultWarFactory extends WarFactory{
- 
+public class StandardWarFactory extends WarFactory{
+
 	@Override
 	public Tank createTank(int x, int y, Dir dir,Group g, TankFrame tf) {
-		Tank tank = new Tank(x, y, dir, g, tf);
+		Tank tank = new StandardTank(x, y, dir, g, tf);
 		return tank;
 	}
 
