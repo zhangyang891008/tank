@@ -1,22 +1,17 @@
 package com.zy.tank.entity;
 
-import java.awt.Graphics;
 import java.util.Random;
 
 import com.zy.tank.ResourceMgr;
-import com.zy.tank.TankFacade;
 import com.zy.tank.TankFrame;
 import com.zy.tank.firestrategy.DefaultFireStrategy;
 import com.zy.tank.firestrategy.FireStrategy;
 import com.zy.tank.firestrategy.FourDirFireStrategy;
 
-public abstract class Tank{
+public abstract class Tank extends BaseObject{
 	public static int SPEED = 4;
 	public Dir dir = Dir.DOWN;
 	public boolean moving = true;
-	public int x;
-	public int y;
-	public TankFrame tf;
 	public boolean alive = true;
 	public Group group;
 	FireStrategy fs ;
@@ -48,30 +43,7 @@ public abstract class Tank{
 	public void setMoving(boolean moving) {
 		this.moving = moving;
 	}
-
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public TankFrame getTf() {
-		return tf;
-	}
-
-	public void setTf(TankFrame tf) {
-		this.tf = tf;
-	}
+ 
 
 	public Tank(int x, int y, Dir dir,Group g, TankFrame tf) {
 		this.x = x;
@@ -87,7 +59,20 @@ public abstract class Tank{
 		}
 	}
 	
-	public abstract void paint(Graphics g);
+	public void boundCheck() {
+		if(x<0) {
+			x=0;
+		}
+		if(y<0) {
+			y=0;
+		}
+		if(x>tf.frameSizeX-this.width) {
+			x = tf.frameSizeX - this.width;
+		}
+		if(y>tf.frameSizeY -this.height) {
+			y = tf.frameSizeY -this.height;
+		}
+	}
 	 
 	public abstract void fire();
 	

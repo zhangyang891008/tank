@@ -1,18 +1,14 @@
 package com.zy.tank.entity;
 
-import java.awt.Graphics;
-
 import com.zy.tank.ResourceMgr;
 import com.zy.tank.TankFacade;
 import com.zy.tank.TankFrame;
 
-public abstract class Bullet{
+public abstract class Bullet extends BaseObject{
 
 	public static int height = ResourceMgr.bulletD.getHeight();
 	public static int width = ResourceMgr.bulletD.getWidth();
-	int x,y;
 	Dir dir;
-	TankFrame tf;
 	static int SPEED=15;
 	boolean alive = true;
 	Group group;
@@ -25,8 +21,6 @@ public abstract class Bullet{
 		this.tf = tankFrame;
 		TankFacade.getBullets().add(this);
 	}
-	
-	public abstract void paint(Graphics g);
 
 	public boolean isAlive() {
 		return alive;
@@ -35,16 +29,30 @@ public abstract class Bullet{
 	public void setAlive(boolean alive) {
 		this.alive = alive;
 	}
-
-	public void collide(Tank tank) {
-		if(this.group ==tank.getGroup()) {
-			return;
+	
+	public void move() {	
+		switch(dir) {
+		case LEFT:
+			x-= SPEED;
+			break;
+		case RIGHT:
+			x+=SPEED;
+			break;
+		case UP:
+			y-=SPEED;
+			break;
+		case DOWN:
+			y+=SPEED;
+			break;
 		}
-		if(this.x>tank.getX() && this.x<tank.getX()+tank.width && y>tank.getY() && y<tank.getY()+tank.height) {
-			TankFacade.getEnemyTanks().remove(tank);
-			TankFacade.getBullets().remove(this);
-			TankFacade.getExplodes().add(TankFacade.factory.createExplode(tank.getX(), tank.getY(), tf));
+		
+		if(x<0 || y<0 || x>tf.frameSizeX || y>tf.frameSizeY) {
+			setAlive(false);
 		}
+	}
+	
+	public Group getGroup() {
+		return this.group;
 	}
 
 }

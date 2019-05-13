@@ -68,20 +68,7 @@ public class BeautifulTank extends Tank{
 		boundCheck();
 		
 	}
-	private void boundCheck() {
-		if(x<0) {
-			x=0;
-		}
-		if(y<0) {
-			y=0;
-		}
-		if(x>tf.frameSizeX-this.width) {
-			x = tf.frameSizeX - this.width;
-		}
-		if(y>tf.frameSizeY -this.height) {
-			y = tf.frameSizeY -this.height;
-		}
-	}
+
 	@Override
 	public void fire() {
 		fs.fire(this);

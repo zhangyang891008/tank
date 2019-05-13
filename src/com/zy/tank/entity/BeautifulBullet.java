@@ -37,28 +37,6 @@ public class BeautifulBullet extends Bullet {
 			g.drawImage(ResourceMgr.beautifulBulletD, x, y, null);
 		}
 		move();
+	}
 	
-	}
-	private void move() {	
-		switch(dir) {
-		case LEFT:
-			x-= SPEED;
-			break;
-		case RIGHT:
-			x+=SPEED;
-			break;
-		case UP:
-			y-=SPEED;
-			break;
-		case DOWN:
-			y+=SPEED;
-			break;
-		}
-		
-		if(x<0 || y<0 || x>tf.frameSizeX || y>tf.frameSizeY) {
-			//System.out.println("position:("+x+","+y+")");
-			setAlive(false);
-		}
-		
-	}
 }

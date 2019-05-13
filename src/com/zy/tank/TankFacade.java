@@ -15,6 +15,7 @@ public class TankFacade {
 	private static List<Explode> explodes = new ArrayList<Explode>();
 	public static WarFactory factory;
 	private static Tank tank ;
+	public static TankFrame tf;
 	static {
 		String factoryClazz = PropertyMgr.get("factorymode");
 		try {
@@ -45,10 +46,27 @@ public class TankFacade {
 			explodes.get(i).paint(g);
 		}
 			
+		// check collide
+		collide();
+	}
+	
+
+	private static void collide() {
 		for(int i = 0;i<bullets.size();i++) {
 			for(int j = 0;j<enemyTanks.size();j++) {
-				bullets.get(i).collide(enemyTanks.get(j));
+				checkCollide(bullets.get(i),enemyTanks.get(j));
 			}
+		}
+	}
+	
+	private static void checkCollide(Bullet bullet, Tank tank) {
+		if(bullet.getGroup()!=tank.getGroup()) {
+			return;
+		}
+		if(bullet.getX()>tank.getX() && bullet.getX()<tank.getX()+tank.width && bullet.getY()>tank.getY() && bullet.getY()<tank.getY()+tank.height) {
+			TankFacade.getEnemyTanks().remove(tank);
+			TankFacade.getBullets().remove(bullet);
+			TankFacade.getExplodes().add(TankFacade.factory.createExplode(tank.getX(), tank.getY(), tf));
 		}
 	}
 	
@@ -70,6 +88,11 @@ public class TankFacade {
 	
 	public static void setTank(Tank mytank) {
 		tank = mytank;
+	}
+
+
+	public static void setTf(TankFrame tankFrame) {
+		tf = tankFrame;
 	}
 	
 }
