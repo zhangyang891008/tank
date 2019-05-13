@@ -3,11 +3,12 @@ package com.zy.tank.entity;
 import java.awt.Graphics;
 
 import com.zy.tank.ResourceMgr;
+import com.zy.tank.TankFacade;
 import com.zy.tank.TankFrame;
 
 public abstract class Explode{
 	 int x,y;
-	TankFrame tf;
+	 TankFrame tf;
 	int step = 0;
 	
 	public Explode(int x, int y, TankFrame tf) {

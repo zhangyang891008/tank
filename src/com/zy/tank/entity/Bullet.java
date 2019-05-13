@@ -3,6 +3,7 @@ package com.zy.tank.entity;
 import java.awt.Graphics;
 
 import com.zy.tank.ResourceMgr;
+import com.zy.tank.TankFacade;
 import com.zy.tank.TankFrame;
 
 public abstract class Bullet{
@@ -22,7 +23,7 @@ public abstract class Bullet{
 		this.dir = down;
 		this.group = group;
 		this.tf = tankFrame;
-		tf.bullets.add(this);
+		TankFacade.getBullets().add(this);
 	}
 	
 	public abstract void paint(Graphics g);
@@ -40,9 +41,9 @@ public abstract class Bullet{
 			return;
 		}
 		if(this.x>tank.getX() && this.x<tank.getX()+tank.width && y>tank.getY() && y<tank.getY()+tank.height) {
-			tf.enemyTanks.remove(tank);
-			tf.bullets.remove(this);
-			tf.explodes.add(tf.factory.createExplode(tank.getX(), tank.getY(), tf));
+			TankFacade.getEnemyTanks().remove(tank);
+			TankFacade.getBullets().remove(this);
+			TankFacade.getExplodes().add(TankFacade.factory.createExplode(tank.getX(), tank.getY(), tf));
 		}
 	}
 

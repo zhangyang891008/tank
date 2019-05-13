@@ -3,6 +3,7 @@ package com.zy.tank.entity;
 import java.awt.Graphics;
 
 import com.zy.tank.ResourceMgr;
+import com.zy.tank.TankFacade;
 import com.zy.tank.TankFrame;
 import com.zy.tank.entity.Dir;
 
@@ -18,7 +19,7 @@ public class BeautifulBullet extends Bullet {
 	
 	public void paint(Graphics g) {
 		if(!isAlive()) {
-			tf.bullets.remove(this);
+			TankFacade.getBullets().remove(this);
 			return;
 		}
 	 

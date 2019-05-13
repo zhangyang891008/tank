@@ -3,6 +3,7 @@ package com.zy.tank.entity;
 import java.awt.Graphics;
 
 import com.zy.tank.ResourceMgr;
+import com.zy.tank.TankFacade;
 import com.zy.tank.TankFrame;
 
 public class BeautifulExplode extends Explode {
@@ -17,7 +18,7 @@ public class BeautifulExplode extends Explode {
 			g.drawImage(ResourceMgr.beautifulExplodes[step++], x, y, null);
 			
 		}else {
-			tf.explodes.remove(this);
+			TankFacade.getExplodes().remove(this);
 		}
 	}
 }

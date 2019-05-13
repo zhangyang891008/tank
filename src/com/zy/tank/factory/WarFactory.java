@@ -1,5 +1,6 @@
 package com.zy.tank.factory;
 
+import com.zy.tank.TankFacade;
 import com.zy.tank.TankFrame;
 import com.zy.tank.entity.Bullet;
 import com.zy.tank.entity.Dir;

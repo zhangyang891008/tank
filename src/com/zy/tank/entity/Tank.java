@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import com.zy.tank.ResourceMgr;
+import com.zy.tank.TankFacade;
 import com.zy.tank.TankFrame;
 import com.zy.tank.firestrategy.DefaultFireStrategy;
 import com.zy.tank.firestrategy.FireStrategy;

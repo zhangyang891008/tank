@@ -7,44 +7,16 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.zy.tank.entity.Bullet;
 import com.zy.tank.entity.Dir;
-import com.zy.tank.entity.Explode;
 import com.zy.tank.entity.Group;
-import com.zy.tank.entity.Tank;
-import com.zy.tank.factory.WarFactory;
 
 public class TankFrame extends Frame{
-	/**
-	 * 
-	 */
+ 
 	private static final long serialVersionUID = 1L;
 	
 	public static int frameSizeX = 800;
 	public static int frameSizeY = 600;
-	public static WarFactory factory;
-	Tank tank = factory.createTank(200, 200, Dir.DOWN, Group.Good, this);
-	//Tank tank = new Tank(0, 0, Dir.DOWN, Group.Good,this);
-	public List<Bullet> bullets = new ArrayList<Bullet>();
-	
-	public List<Tank> enemyTanks = new ArrayList<Tank>();
-	
-	public List<Explode> explodes = new ArrayList<Explode>();
-	static {
-		String factoryClazz = PropertyMgr.get("factorymode");
-		try {
-			factory = (WarFactory) Class.forName(factoryClazz).newInstance();
-		} catch (InstantiationException e1) {
-			e1.printStackTrace();
-		} catch (IllegalAccessException e1) {
-			e1.printStackTrace();
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
-	}
 	
     public TankFrame() {
     	 
@@ -61,38 +33,12 @@ public class TankFrame extends Frame{
 			}
     		
 		});
+    	TankFacade.setTank(TankFacade.factory.createTank(200, 200, Dir.DOWN, Group.Good, this));
 	}
- 
-	public List<Tank> getTanks() {
-    	return enemyTanks;
-    }
 
 	@Override
 	public void paint(Graphics g) {
-		Color color = g.getColor();
-		g.setColor(Color.WHITE);
-		g.drawString("坦克数量："+enemyTanks.size(), 10, 60);
-		g.drawString("子弹数量："+bullets.size(), 10, 80);
-		g.setColor(color);
-		tank.paint(g);
-	
-		for(int i = 0;i<enemyTanks.size();i++){
-			enemyTanks.get(i).paint(g);
-		}
-		
-		for(int i = 0;i<bullets.size();i++) {
-			bullets.get(i).paint(g);
-		}
-		
-		for(int i = 0;i<explodes.size();i++) {
-			explodes.get(i).paint(g);
-		}
-			
-		for(int i = 0;i<bullets.size();i++) {
-			for(int j = 0;j<enemyTanks.size();j++) {
-				bullets.get(i).collide(enemyTanks.get(j));
-			}
-		}
+		TankFacade.paint(g);
 	}
 	
 	class MyKeyListener extends KeyAdapter{
@@ -140,22 +86,21 @@ public class TankFrame extends Frame{
 				break;
 			case KeyEvent.VK_CONTROL:
 				System.out.println("control....");
-				tank.fire();
+				TankFacade.getTank().fire();
 				break;
 			}
 				
-			
 			setTankDir();
 		}
 
 		private void setTankDir() {
-			if(!LEFT && !RIGHT && !UP && !DOWN) tank.setMoving(false);
+			if(!LEFT && !RIGHT && !UP && !DOWN) TankFacade.getTank().setMoving(false);
 			else {
-				tank.setMoving(true);
-				if(RIGHT) tank.setDir(Dir.RIGHT);
-				if(LEFT)  tank.setDir(Dir.LEFT);
-				if(UP) tank.setDir(Dir.UP);
-				if(DOWN) tank.setDir(Dir.DOWN);
+				TankFacade.getTank().setMoving(true);
+				if(RIGHT) TankFacade.getTank().setDir(Dir.RIGHT);
+				if(LEFT)  TankFacade.getTank().setDir(Dir.LEFT);
+				if(UP) TankFacade.getTank().setDir(Dir.UP);
+				if(DOWN) TankFacade.getTank().setDir(Dir.DOWN);
 			}
 		}
 		

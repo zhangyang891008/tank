@@ -3,6 +3,7 @@ package com.zy.tank.entity;
 import java.awt.Graphics;
 
 import com.zy.tank.ResourceMgr;
+import com.zy.tank.TankFacade;
 import com.zy.tank.TankFrame;
 
 public class BeautifulTank extends Tank{
@@ -14,7 +15,7 @@ public class BeautifulTank extends Tank{
 	@Override
 	public void paint(Graphics g) {
 		if(!isAlive()) {
-			tf.enemyTanks.remove(this);
+			TankFacade.getEnemyTanks().remove(this);
 			return;
 		}
 		
