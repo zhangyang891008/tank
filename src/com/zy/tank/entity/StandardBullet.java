@@ -39,5 +39,5 @@ public class StandardBullet extends Bullet {
 		move();
 	
 	}
- 
+  
 }

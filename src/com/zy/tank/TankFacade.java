@@ -60,7 +60,7 @@ public class TankFacade {
 	}
 	
 	private static void checkCollide(Bullet bullet, Tank tank) {
-		if(bullet.getGroup()!=tank.getGroup()) {
+		if(bullet.getGroup()==tank.getGroup()) {
 			return;
 		}
 		if(bullet.getX()>tank.getX() && bullet.getX()<tank.getX()+tank.width && bullet.getY()>tank.getY() && bullet.getY()<tank.getY()+tank.height) {
