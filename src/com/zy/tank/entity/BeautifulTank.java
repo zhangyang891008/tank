@@ -74,8 +74,8 @@ public class BeautifulTank extends Tank{
 		fs.fire(this);
 	}
 
-	public BeautifulTank(int x, int y, Dir dir, Group g, TankFrame tf) {
-		super(x, y, dir, g, tf);
+	public BeautifulTank(int x, int y, Dir dir, Group g) {
+		super(x, y, dir, g);
 		this.SPEED = 5;
 	}
 

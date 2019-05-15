@@ -4,12 +4,11 @@ import java.awt.Graphics;
 
 import com.zy.tank.ResourceMgr;
 import com.zy.tank.TankFacade;
-import com.zy.tank.TankFrame;
 
 public class BeautifulExplode extends Explode {
 
-	public BeautifulExplode(int x, int y, TankFrame tf) {
-		super(x, y, tf);
+	public BeautifulExplode(int x, int y) {
+		super(x, y);
 	}
 
 	@Override

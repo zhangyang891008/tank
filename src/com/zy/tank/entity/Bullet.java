@@ -13,12 +13,11 @@ public abstract class Bullet extends BaseObject{
 	boolean alive = true;
 	Group group;
  
-	public Bullet(int x, int y, Dir down, Group group,TankFrame tankFrame) {
+	public Bullet(int x, int y, Dir down, Group group) {
 		this.x = x;
 		this.y = y;
 		this.dir = down;
 		this.group = group;
-		this.tf = tankFrame;
 		TankFacade.getBullets().add(this);
 	}
 
@@ -46,7 +45,7 @@ public abstract class Bullet extends BaseObject{
 			break;
 		}
 		
-		if(x<0 || y<0 || x>tf.frameSizeX || y>tf.frameSizeY) {
+		if(x<0 || y<0 || x>TankFrame.frameSizeX || y>TankFrame.frameSizeY) {
 			setAlive(false);
 		}
 	}

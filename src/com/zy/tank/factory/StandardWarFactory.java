@@ -13,20 +13,20 @@ import com.zy.tank.entity.Tank;
 public class StandardWarFactory extends WarFactory{
 
 	@Override
-	public Tank createTank(int x, int y, Dir dir,Group g, TankFrame tf) {
-		Tank tank = new StandardTank(x, y, dir, g, tf);
+	public Tank createTank(int x, int y, Dir dir,Group g) {
+		Tank tank = new StandardTank(x, y, dir, g);
 		return tank;
 	}
 
 	@Override
-	public Bullet creatBullet(int x, int y, Dir down, Group group,TankFrame tankFrame) {
-		Bullet bullet = new StandardBullet(x, y, down, group, tankFrame);
+	public Bullet creatBullet(int x, int y, Dir down, Group group) {
+		Bullet bullet = new StandardBullet(x, y, down, group);
 		return bullet;
 	}
 
 	@Override
-	public Explode createExplode(int x, int y, TankFrame tf) {
-		Explode explode = new StandardExplode(x, y, tf);
+	public Explode createExplode(int x, int y) {
+		Explode explode = new StandardExplode(x, y);
 		return explode;
 	}
 

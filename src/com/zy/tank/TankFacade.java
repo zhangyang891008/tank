@@ -10,6 +10,7 @@ import com.zy.tank.entity.Tank;
 import com.zy.tank.factory.WarFactory;
 
 public class TankFacade {
+	
 	private static List<Tank> enemyTanks = new ArrayList<Tank>();
 	private static List<Bullet> bullets = new ArrayList<Bullet>();
 	private static List<Explode> explodes = new ArrayList<Explode>();
@@ -50,7 +51,6 @@ public class TankFacade {
 		collide();
 	}
 	
-
 	private static void collide() {
 		for(int i = 0;i<bullets.size();i++) {
 			for(int j = 0;j<enemyTanks.size();j++) {
@@ -66,7 +66,7 @@ public class TankFacade {
 		if(bullet.getX()>tank.getX() && bullet.getX()<tank.getX()+tank.width && bullet.getY()>tank.getY() && bullet.getY()<tank.getY()+tank.height) {
 			TankFacade.getEnemyTanks().remove(tank);
 			TankFacade.getBullets().remove(bullet);
-			TankFacade.getExplodes().add(TankFacade.factory.createExplode(tank.getX(), tank.getY(), tf));
+			TankFacade.getExplodes().add(TankFacade.factory.createExplode(tank.getX(), tank.getY()));
 		}
 	}
 	
@@ -90,9 +90,4 @@ public class TankFacade {
 		tank = mytank;
 	}
 
-
-	public static void setTf(TankFrame tankFrame) {
-		tf = tankFrame;
-	}
-	
 }

@@ -8,8 +8,8 @@ import com.zy.tank.TankFrame;
 
 public class StandardExplode extends Explode{
 
-	public StandardExplode(int x, int y, TankFrame tf) {
-		super(x, y, tf);
+	public StandardExplode(int x, int y) {
+		super(x, y);
 	}
 	
 	@Override

@@ -33,8 +33,7 @@ public class TankFrame extends Frame{
 			}
     		
 		});
-    	TankFacade.setTf(this);
-    	TankFacade.setTank(TankFacade.factory.createTank(200, 200, Dir.DOWN, Group.Good, this));
+    	TankFacade.setTank(TankFacade.factory.createTank(200, 200, Dir.DOWN, Group.Good));
 	}
 
 	@Override

@@ -10,10 +10,10 @@ import com.zy.tank.entity.Tank;
 
 public abstract class WarFactory {
 	
-	public abstract Tank createTank(int x, int y, Dir dir,Group g, TankFrame tf);
+	public abstract Tank createTank(int x, int y, Dir dir,Group g);
 	
-	public abstract Bullet creatBullet(int x, int y, Dir down, Group group,TankFrame tankFrame);
+	public abstract Bullet creatBullet(int x, int y, Dir down, Group group);
 	
-	public abstract Explode createExplode(int x, int y, TankFrame tf);
+	public abstract Explode createExplode(int x, int y);
 
 }

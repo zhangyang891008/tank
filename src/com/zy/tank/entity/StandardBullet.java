@@ -13,8 +13,8 @@ public class StandardBullet extends Bullet {
 		width = ResourceMgr.bulletD.getWidth();
 	}
 	
-	public StandardBullet(int x, int y, Dir down, Group group, TankFrame tankFrame) {
-		super(x, y, down, group, tankFrame);
+	public StandardBullet(int x, int y, Dir down, Group group) {
+		super(x, y, down, group);
 	}
 	
 	public void paint(Graphics g) {

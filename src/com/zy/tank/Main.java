@@ -16,7 +16,7 @@ public class Main {
 		try {
 			WarFactory factory = (WarFactory) Class.forName(factoryClazz).newInstance();
 			for(int i= 0;i<tankCount;i++) {
-				TankFacade.getEnemyTanks().add(factory.createTank(200, 100+50*i, Dir.DOWN, Group.Bad, tf));
+				TankFacade.getEnemyTanks().add(factory.createTank(200, 100+50*i, Dir.DOWN, Group.Bad));
 			}
 			
 			while(true) {

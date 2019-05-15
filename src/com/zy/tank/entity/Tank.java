@@ -45,12 +45,11 @@ public abstract class Tank extends BaseObject{
 	}
  
 
-	public Tank(int x, int y, Dir dir,Group g, TankFrame tf) {
+	public Tank(int x, int y, Dir dir,Group g) {
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
 		this.group = g;
-		this.tf = tf;
   
 		if(group==Group.Good) {
 			fs = new FourDirFireStrategy();
@@ -66,11 +65,11 @@ public abstract class Tank extends BaseObject{
 		if(y<0) {
 			y=0;
 		}
-		if(x>tf.frameSizeX-this.width) {
-			x = tf.frameSizeX - this.width;
+		if(x>TankFrame.frameSizeX-this.width) {
+			x = TankFrame.frameSizeX - this.width;
 		}
-		if(y>tf.frameSizeY -this.height) {
-			y = tf.frameSizeY -this.height;
+		if(y>TankFrame.frameSizeY -this.height) {
+			y = TankFrame.frameSizeY -this.height;
 		}
 	}
 	 

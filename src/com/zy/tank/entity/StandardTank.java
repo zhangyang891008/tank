@@ -74,8 +74,8 @@ public class StandardTank extends Tank{
 		fs.fire(this);
 	}
 
-	public StandardTank(int x, int y, Dir dir, Group g, TankFrame tf) {
-		super(x, y, dir, g, tf);
+	public StandardTank(int x, int y, Dir dir, Group g) {
+		super(x, y, dir, g);
 		this.SPEED = 1;
 	}
 }
