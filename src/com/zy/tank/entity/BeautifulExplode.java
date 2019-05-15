@@ -17,7 +17,7 @@ public class BeautifulExplode extends Explode {
 			g.drawImage(ResourceMgr.beautifulExplodes[step++], x, y, null);
 			
 		}else {
-			TankFacade.getExplodes().remove(this);
+			TankFacade.remove(this);
 		}
 	}
 }

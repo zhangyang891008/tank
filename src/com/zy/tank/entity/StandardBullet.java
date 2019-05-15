@@ -19,7 +19,7 @@ public class StandardBullet extends Bullet {
 	
 	public void paint(Graphics g) {
 		if(!isAlive()) {
-			TankFacade.getBullets().remove(this);
+			TankFacade.remove(this);
 			return;
 		}
 	 

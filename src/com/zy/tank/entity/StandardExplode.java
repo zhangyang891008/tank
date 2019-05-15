@@ -18,7 +18,7 @@ public class StandardExplode extends Explode{
 			g.drawImage(ResourceMgr.standardExplodes[step++], x, y, null);
 			
 		}else {
-			TankFacade.getExplodes().remove(this);
+			TankFacade.remove(this);
 		}
 	}
 }

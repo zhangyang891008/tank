@@ -50,7 +50,7 @@ public abstract class Tank extends BaseObject{
 		this.y = y;
 		this.dir = dir;
 		this.group = g;
-  
+		
 		if(group==Group.Good) {
 			fs = new FourDirFireStrategy();
 		}else {
@@ -89,6 +89,10 @@ public abstract class Tank extends BaseObject{
 
 	public void setGroup(Group group) {
 		this.group = group;
+	}
+	
+	public void resetPos() {
+		this.setMoving(false);
 	}
  
 }

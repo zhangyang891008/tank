@@ -15,7 +15,7 @@ public class StandardTank extends Tank{
 	@Override
 	public void paint(Graphics g) {
 		if(!isAlive()) {
-			TankFacade.getEnemyTanks().remove(this);
+			TankFacade.remove(this);
 			return;
 		}
 		

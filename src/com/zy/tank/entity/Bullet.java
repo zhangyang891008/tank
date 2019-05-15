@@ -18,7 +18,7 @@ public abstract class Bullet extends BaseObject{
 		this.y = y;
 		this.dir = down;
 		this.group = group;
-		TankFacade.getBullets().add(this);
+		TankFacade.add(this);
 	}
 
 	public boolean isAlive() {
