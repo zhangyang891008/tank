@@ -16,7 +16,7 @@ public class TankFrame extends Frame{
 	private static final long serialVersionUID = 1L;
 	
 	public static int frameSizeX = 800;
-	public static int frameSizeY = 600;
+	public static int frameSizeY = 800;
 	
     public TankFrame() {
     	 

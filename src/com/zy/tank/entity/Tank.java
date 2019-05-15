@@ -46,6 +46,8 @@ public abstract class Tank extends BaseObject{
  
 
 	public Tank(int x, int y, Dir dir,Group g) {
+		if(x<0)x=0;
+		if(y<0)y=0;
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
@@ -92,7 +94,7 @@ public abstract class Tank extends BaseObject{
 	}
 	
 	public void resetPos() {
-		this.setMoving(false);
+		setMoving(false);
 	}
  
 }

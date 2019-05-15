@@ -14,10 +14,6 @@ public class StandardTank extends Tank{
 	}
 	@Override
 	public void paint(Graphics g) {
-		if(!isAlive()) {
-			TankFacade.remove(this);
-			return;
-		}
 		
 		switch(dir) {
 		case LEFT:

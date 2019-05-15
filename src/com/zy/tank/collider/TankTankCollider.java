@@ -18,7 +18,7 @@ public class TankTankCollider implements Collider {
 		int value = tank.width*tank.width + tank.height*tank.height;
 		int value2 = (tank.getX()-tank2.getX())*(tank.getX()-tank2.getX()) + (tank.getY()-tank2.getY())*(tank.getY()-tank2.getY());
 		if(value > value2) {
-			System.out.println("collide");
+			//System.out.println("collide");
 			tank.resetPos();
 			tank2.resetPos();
 		}

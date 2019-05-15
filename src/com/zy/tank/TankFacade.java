@@ -51,6 +51,8 @@ public class TankFacade {
 	
 	public static void remove(BaseObject object) {
 		objects.remove(object);
+		if(object instanceof Tank)
+			System.out.println("remove:"+object.getX()+","+object.getY());
 	}
  
 	public static Tank getTank() {

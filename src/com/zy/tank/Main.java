@@ -2,9 +2,6 @@ package com.zy.tank;
 
 import com.zy.tank.entity.Dir;
 import com.zy.tank.entity.Group;
-import com.zy.tank.entity.Tank;
-import com.zy.tank.factory.BeautifulWarFactory;
-import com.zy.tank.factory.StandardWarFactory;
 import com.zy.tank.factory.WarFactory;
 
 public class Main {
@@ -16,7 +13,7 @@ public class Main {
 		try {
 			WarFactory factory = (WarFactory) Class.forName(factoryClazz).newInstance();
 			for(int i= 0;i<tankCount;i++) {
-				TankFacade.add(factory.createTank(100, 50+120*i, Dir.DOWN, Group.Bad));
+				TankFacade.add(factory.createTank(100, 10+80*i, Dir.DOWN, Group.Bad));
 			}
 			
 			while(true) {
@@ -34,7 +31,6 @@ public class Main {
 		} catch (ClassNotFoundException e1) {
 			e1.printStackTrace();
 		}
-		
 		
 	}
 
