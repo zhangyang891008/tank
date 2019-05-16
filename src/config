@@ -1,2 +1,3 @@
 #config your play mode here
 factorymode=com.zy.tank.factory.BeautifulWarFactory
+collider=com.zy.tank.collider.BulletTankCollider,com.zy.tank.collider.TankTankCollider
