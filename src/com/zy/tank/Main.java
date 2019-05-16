@@ -5,7 +5,7 @@ import com.zy.tank.entity.Group;
 import com.zy.tank.factory.WarFactory;
 
 public class Main {
-	public static int tankCount = 10;
+	public static int tankCount = 8;
 	public static void main(String[] args) {
 		TankFrame tf= new TankFrame();
 		//change factory

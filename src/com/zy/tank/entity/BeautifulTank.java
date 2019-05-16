@@ -14,6 +14,8 @@ public class BeautifulTank extends Tank{
 	
 	@Override
 	public void paint(Graphics g) {
+		oldx = x;
+		oldy = y;
 		
 		switch(dir) {
 		case LEFT:

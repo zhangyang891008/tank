@@ -17,6 +17,9 @@ public abstract class Tank extends BaseObject{
 	FireStrategy fs ;
 	public static int width = ResourceMgr.goodTankD.getWidth();
 	public static int height = ResourceMgr.goodTankD.getHeight();
+	
+	public  int oldx;
+	public  int oldy;
 		
 	Random random = new Random();
 
@@ -48,6 +51,9 @@ public abstract class Tank extends BaseObject{
 	public Tank(int x, int y, Dir dir,Group g) {
 		if(x<0)x=0;
 		if(y<0)y=0;
+		
+		oldx  = x;
+		oldy = y;
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
@@ -94,7 +100,8 @@ public abstract class Tank extends BaseObject{
 	}
 	
 	public void resetPos() {
-		setMoving(false);
+		x = oldx;
+		y = oldy;
 	}
  
 }
